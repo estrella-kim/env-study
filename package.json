@@ -1,0 +1,25 @@
+{
+  "name": "env-study",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "css-loader": "^0.28.8",
+    "eslint": "^4.15.0",
+    "eslint-loader": "^1.9.0",
+    "jquery": "^3.2.1",
+    "moment": "^2.20.1",
+    "style-loader": "^0.19.1",
+    "webpack": "^3.10.0"
+  }
+}
