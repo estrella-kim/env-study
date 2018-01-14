@@ -1,14 +1,15 @@
-import Button from './components/Button';
-import './index.css';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Button from './components/Button'
 
-class Index {
-  hello(name) {
-    return '안녕하세요 ' + name + '님!';
-  }
+function App() {
+  return (
+    <div>
+      Hello React World!!!
+      <div>
+        <Button/>
+      </div>
+    </div>
+  )
 }
-
-const abc = new Index();
-const btn = new Button();
-
-console.log(btn);
-console.log(abc.hello('김수호'));
+ReactDOM.render(<App />, document.getElementById('app'));
