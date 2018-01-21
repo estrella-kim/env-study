@@ -5,13 +5,17 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
+      text: '',
       textLength: 0
     }
   }
   onChangeHandler(e) {
-    this.setState({
-      textLength: e.target.value.length
-    });
+    const maximumNumber = 15;
+    const text = e.target.value;
+    const textLength = text.length;
+    if(textLength > maximumNumber) return;
+
+    this.setState({ text, textLength });
   }
   render() {
     return (
@@ -20,7 +24,9 @@ class App extends React.Component {
           ({this.state.textLength}/15)
         </div>
         <input type="text"
-               onChange={(e) => this.onChangeHandler(e)} />
+               onChange={(e) => this.onChangeHandler(e)}
+               value={this.state.text}
+        />
       </div>
     );
   }
