@@ -1,3 +1,5 @@
+const webpack = require('webpack');
+
 module.exports = {
   entry: './src/index.js',
   output: {
@@ -21,5 +23,19 @@ module.exports = {
         loader: 'css-loader'
       }]
     }]
-  }
+  },
+  plugins: [
+    /*new webpack.optimize.UglifyJsPlugin()*/
+  ]
 };
+
+
+
+
+
+
+
+
+
+
+
