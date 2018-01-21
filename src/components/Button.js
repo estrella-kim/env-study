@@ -1,9 +1,12 @@
 import React from 'react';
 import './Button.css';
 
-export default function Button() {
+export default function Button(props) {
   return (
-    <button className="btn-primary">
+    <button
+      onClick={props.onClick}
+      className={props.type === 'primary' ? 'btn-primary' : 'btn-default'}
+    >
       버튼
     </button>
   );
