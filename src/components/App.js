@@ -1,12 +1,13 @@
 import React from "react";
+import {connect} from 'react-redux';
 import 'antd-mobile/dist/antd-mobile.css';
 import './App.css';
 import {NavBar, Drawer, Icon, List} from 'antd-mobile';
 
-export default class App extends React.Component {
-  constructor() {
+class App extends React.Component {
+  constructor(props) {
     super();
-
+    console.log(props);
   }
   onOpenChange(e) {
     console.log(e);
@@ -29,14 +30,14 @@ export default class App extends React.Component {
 
     return (
       <div>
-        <NavBar icon={<Icon type="ellipsis" />} onLeftClick={this.onOpenChange}>Basic</NavBar>
+        <NavBar icon={<Icon type="ellipsis" />} onLeftClick={()=>this.props.toggle()}>Basic</NavBar>
         <Drawer
           className="my-drawer"
           style={{ minHeight: document.documentElement.clientHeight }}
           enableDragHandle
           contentStyle={{ color: '#A6A6A6', textAlign: 'center', paddingTop: 42 }}
           sidebar={sidebar}
-          open={false}
+          open={this.props.sidebar.opened}
           onOpenChange={(e) => this.onOpenChange(e)}
         >
           Click upper-left corner
@@ -45,3 +46,17 @@ export default class App extends React.Component {
     );
   }
 }
+const mapStateToProps = (state) => ({
+  sidebar: state.sidebar,
+  count: state.count
+});
+
+const mapDispatchToProps = {
+  toggle: function () {
+    return {
+      type: 'TOGGLE_SIDEBAR'
+    };
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
