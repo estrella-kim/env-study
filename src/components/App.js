@@ -1,63 +1,46 @@
 import React from "react";
-import {Input, Alert} from 'antd';
-import {Button, Slider} from './index';
+import 'antd-mobile/dist/antd-mobile.css';
+import './App.css';
+import {NavBar, Drawer, Icon, List} from 'antd-mobile';
 
 export default class App extends React.Component {
   constructor() {
     super();
-    this.state = {
-      text: '',
-      textLength: 0,
-      loading: false,
-      warning: 'none',
-      list: []
-    };
-    this.maximumNumber = 15;
-  }
-  onChangeHandler(e) {
-    const text = e.target.value;
-    const textLength = text.length;
-    if(textLength > this.maximumNumber) {
-      this.setState({
-        warning: 'block'
-      });
-      return;
-    }
 
-    this.setState({ text, textLength, warning: 'none' });
   }
-  onSubmitHandler(e) {
-    e.preventDefault();
-    this.setState(state => {
-      return {
-        list: [...state.list, state.text],
-        text: ''
-      }
-    });
+  onOpenChange(e) {
+    console.log(e);
   }
+
   render() {
+    const sidebar = (<List>
+      {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((i, index) => {
+        if (index === 0) {
+          return (<List.Item key={index}
+                             thumb="https://zos.alipayobjects.com/rmsportal/eOZidTabPoEbPeU.png"
+                             multipleLine
+          >Category</List.Item>);
+        }
+        return (<List.Item key={index}
+                           thumb="https://zos.alipayobjects.com/rmsportal/eOZidTabPoEbPeU.png"
+        >Category{index}</List.Item>);
+      })}
+    </List>);
+
     return (
       <div>
-        <div>
-          ({this.state.textLength}/{this.maximumNumber})
-        </div>
-        <form onSubmit={(e) => this.onSubmitHandler(e)}>
-          <Input.Search type="text"
-                        onChange={(e) => this.onChangeHandler(e)}
-                        value={this.state.text}
-          />
-        </form>
-
-        <Alert style={{display: this.state.warning}} message={'15자 까지만 입력가능합니다!!!'} type="error" />
-
-        <ul>
-          {this.state.list.map((v, i) => (<li key={i}>{v}</li>))}
-        </ul>
-        <div>
-          <Button type="primary" onClick={(e) => console.log(e)} />
-          <Button onClick={(e) => console.log(e)} />
-          <Slider/>
-        </div>
+        <NavBar icon={<Icon type="ellipsis" />} onLeftClick={this.onOpenChange}>Basic</NavBar>
+        <Drawer
+          className="my-drawer"
+          style={{ minHeight: document.documentElement.clientHeight }}
+          enableDragHandle
+          contentStyle={{ color: '#A6A6A6', textAlign: 'center', paddingTop: 42 }}
+          sidebar={sidebar}
+          open={false}
+          onOpenChange={(e) => this.onOpenChange(e)}
+        >
+          Click upper-left corner
+        </Drawer>
       </div>
     );
   }
