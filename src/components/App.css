@@ -12,3 +12,7 @@
     width: 300px;
     padding: 0;
 }
+
+.flex-container {
+    margin: 0 15px;
+}
