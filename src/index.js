@@ -1,15 +1,21 @@
-import Button from './components/Button';
-import './index.css';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {createStore, combineReducers} from 'redux';
+import {Provider} from 'react-redux';
+import {App} from './components';
+import {sidebarReducer} from './reducers/sidebarReducer';
+import {countReducer} from './reducers/countReducer';
 
-class Index {
-  hello(name) {
-    return '안녕하세요 ' + name + '님!';
-  }
-}
+const reducer = combineReducers({
+  count: countReducer,
+  sidebar: sidebarReducer
+});
+const store = createStore(
+  reducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
-const abc = new Index();
-const btn = new Button();
-
-console.log(btn);
-console.log(abc.hello('김수호'));
-
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>, document.getElementById('app'));
