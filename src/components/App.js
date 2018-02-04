@@ -1,8 +1,11 @@
 import React from "react";
 import {connect} from 'react-redux';
+import 'antd/dist/antd.min.css';
 import 'antd-mobile/dist/antd-mobile.css';
 import './App.css';
-import {NavBar, Drawer, Icon, List, WhiteSpace, WingBlank, Button, Flex, Card, Carousel} from 'antd-mobile';
+import {NavBar, Drawer, Icon, List, WhiteSpace, WingBlank, Button, Flex} from 'antd-mobile';
+import CardTimeLine from '../containers/CardTimeLine/CardTimeLine';
+import MainSlider from '../containers/MainSlider/MainSlider';
 
 class App extends React.Component {
   constructor(props) {
@@ -59,129 +62,9 @@ class App extends React.Component {
           open={this.props.sidebar.opened}
           onOpenChange={(e) => this.onOpenChange(e)}
         >
-          <div className="flex-container">
-            <Flex>
-              <Flex.Item>
-                <Carousel className="space-carousel"
-                          frameOverflow="visible"
-                          cellSpacing={10}
-                          slideWidth={0.8}
-                          autoplay
-                          infinite
-                          beforeChange={(from, to) => (from + to)}
-                          afterChange={index => this.setState({ slideIndex: index })}
-                >
-                  <a
-                    href="http://www.alipay.com"
-                    style={{
-                      display: 'block',
-                      position: 'relative',
-                      boxShadow: '2px 1px 1px rgba(0, 0, 0, 0.2)',
-                    }}
-                  >
-                    <img
-                      src="https://tlxcdn.s3.amazonaws.com/images/bg/shutterstock_267830291_.jpg"
-                      alt=""
-                      style={{ width: '100%', verticalAlign: 'top' }}
-                      onLoad={() => {
-                        // fire window resize event to change height
-                        window.dispatchEvent(new Event('resize'));
-                        this.setState({ imgHeight: 'auto' });
-                      }}
-                    />
-                  </a>
-                  <a
-                    href="http://www.alipay.com"
-                    style={{
-                      display: 'block',
-                      position: 'relative',
-                      boxShadow: '2px 1px 1px rgba(0, 0, 0, 0.2)',
-                    }}
-                  >
-                    <img
-                      src="https://tlxcdn.s3.amazonaws.com/images/bg/shutterstock_269242565.jpg"
-                      alt=""
-                      style={{ width: '100%', verticalAlign: 'top' }}
-                      onLoad={() => {
-                        // fire window resize event to change height
-                        window.dispatchEvent(new Event('resize'));
-                        this.setState({ imgHeight: 'auto' });
-                      }}
-                    />
-                  </a>
-                  <a
-                    href="http://www.alipay.com"
-                    style={{
-                      display: 'block',
-                      position: 'relative',
-                      boxShadow: '2px 1px 1px rgba(0, 0, 0, 0.2)',
-                    }}
-                  >
-                    <img
-                      src="https://tlxcdn.s3.amazonaws.com/images/bg/shutterstock_269207801.jpg"
-                      alt=""
-                      style={{ width: '100%', verticalAlign: 'top' }}
-                      onLoad={() => {
-                        // fire window resize event to change height
-                        window.dispatchEvent(new Event('resize'));
-                        this.setState({ imgHeight: 'auto' });
-                      }}
-                    />
-                  </a>
-                </Carousel>
-              </Flex.Item>
-            </Flex>
-          </div>
-          <div>
-            <Flex>
-              <Flex.Item>
-                <Card full>
-                  <Card.Header
-                    title="This is title"
-                    thumb="https://cloud.githubusercontent.com/assets/1698185/18039916/f025c090-6dd9-11e6-9d86-a4d48a1bf049.png"
-                    extra={<span>this is extra</span>}
-                  />
-                  <Card.Body>
-                    <div>This is content of `Card`</div>
-                  </Card.Body>
-                  <Card.Footer content="footer content" extra={<div>extra footer content</div>} />
-                </Card>
-              </Flex.Item>
-            </Flex>
-            <WhiteSpace size="lg" />
-            <Flex>
-              <Flex.Item>
-                <Card full>
-                  <Card.Header
-                    title="This is title"
-                    thumb="https://cloud.githubusercontent.com/assets/1698185/18039916/f025c090-6dd9-11e6-9d86-a4d48a1bf049.png"
-                    extra={<span>this is extra</span>}
-                  />
-                  <Card.Body>
-                    <div>This is content of `Card`</div>
-                  </Card.Body>
-                  <Card.Footer content="footer content" extra={<div>extra footer content</div>} />
-                </Card>
-              </Flex.Item>
-            </Flex>
-            <WhiteSpace size="lg" />
-            <Flex>
-              <Flex.Item>
-                <Card full>
-                  <Card.Header
-                    title="This is title"
-                    thumb="https://cloud.githubusercontent.com/assets/1698185/18039916/f025c090-6dd9-11e6-9d86-a4d48a1bf049.png"
-                    extra={<span>this is extra</span>}
-                  />
-                  <Card.Body>
-                    <div>This is content of `Card`</div>
-                  </Card.Body>
-                  <Card.Footer content="footer content" extra={<div>extra footer content</div>} />
-                </Card>
-              </Flex.Item>
-            </Flex>
-            <WhiteSpace size="lg" />
-          </div>
+          <MainSlider />
+          <WhiteSpace size="lg" />
+          <CardTimeLine />
         </Drawer>
       </div>
     );
