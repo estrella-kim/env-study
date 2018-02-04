@@ -1,29 +1,31 @@
 import React from 'react';
 import './CardTimeLine.css';
-import { Card, Flex, WhiteSpace } from 'antd-mobile';
+import { ActivityIndicator, Card, Flex, WhiteSpace } from 'antd-mobile';
 import { Rate } from 'antd';
+import { connect } from 'react-redux';
+import { fetchList } from '../../actions/product';
 
 class CardTimeLine extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      list: []
-    }
   }
   componentDidMount() {
-    fetch('http://wow9144.github.io/productList.json')
-      .then((response) => response.json())
-      .then((json) => {
-        this.setState({
-          list: json.data
-        })
-      });
+    this.props.fetchList();
   }
   render() {
+    if(this.props.loading) {
+      return <div className="toast-example">
+        <ActivityIndicator
+          toast
+          text="Loading..."
+          animating={this.props.loading}
+        />
+      </div>
+    }
     return (
       <div>
         {
-          this.state.list.map((v, i) => {
+          this.props.list.map((v, i) => {
             return (
               <div key={i}>
                 <Flex>
@@ -50,5 +52,28 @@ class CardTimeLine extends React.Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    list: state.productList.list,
+    loading: state.productList.loading
+  };
+};
+const mapDispatchToProps = {
+  fetchList
+};
 
-export default CardTimeLine;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CardTimeLine);
+
+
+
+
+
+
+
+
+
+
+

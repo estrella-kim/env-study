@@ -3,9 +3,10 @@ import {connect} from 'react-redux';
 import 'antd/dist/antd.min.css';
 import 'antd-mobile/dist/antd-mobile.css';
 import './App.css';
+import {toggle} from '../actions/sidebar';
 import {NavBar, Drawer, Icon, List, WhiteSpace, WingBlank, Button, Flex} from 'antd-mobile';
-import CardTimeLine from '../containers/CardTimeLine/CardTimeLine';
-import MainSlider from '../containers/MainSlider/MainSlider';
+import CardTimeLine from './CardTimeLine/CardTimeLine';
+import MainSlider from './MainSlider/MainSlider';
 
 class App extends React.Component {
   constructor(props) {
@@ -76,11 +77,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  toggle: function () {
-    return {
-      type: 'TOGGLE_SIDEBAR'
-    };
-  }
+  toggle
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
